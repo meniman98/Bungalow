@@ -30,7 +30,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop"
+        tools:layout="@layout/fragment_add_bungalow" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
