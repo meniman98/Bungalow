@@ -6,15 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".AddBungalowFragment" >
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
+
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:drawableStart="@drawable/search"
+        android:ems="10"
+        android:hint="@string/searchHouse"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </SearchView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
         android:id="@+id/scrollView"
@@ -24,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
@@ -36,20 +40,33 @@
                 android:id="@+id/chip4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/unitedKingdom"/>
+                android:text="@string/unitedKingdom" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/germany"/>
+                android:text="@string/germany" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/theNetherlands"/>
+                android:text="@string/theNetherlands" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBungalows"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"
+        tools:listitem="@layout/fragment_bungalow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
