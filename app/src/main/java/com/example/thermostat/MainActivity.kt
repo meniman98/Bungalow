@@ -8,23 +8,10 @@ import android.view.View
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 
 class MainActivity : AppCompatActivity() {
-    lateinit var seekBar: ArcSeekBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.temperature)
-        seekBar = findViewById(R.id.seekBar)
+        setContentView(R.layout.activity_main)
 
-        val parent = seekBar.parent as View
-        val delegateArea = Rect()
-
-        parent.post {
-            seekBar.getHitRect(delegateArea)
-
-            delegateArea.top += 500
-            delegateArea.bottom += 500
-
-            parent.touchDelegate = TouchDelegate(delegateArea, seekBar)
-        }
 
     }
 }

@@ -8,4 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#858585</color>
+
+    <color name="iceBlue">#4AC2F8</color>
+    <color name="blue">#008EFF</color>
+    <color name="red">#FF4141</color>
+    <color name="deepRed">#FF0000</color>
+
+    <array name="gradient">
+        <item>#00B0FF</item>
+        <item>#82C7FD</item>
+        <item>#FF8585</item>
+        <item>#FF0000</item>
+    </array>
+
 </resources>
