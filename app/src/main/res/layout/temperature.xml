@@ -9,6 +9,7 @@
 
 
     <com.marcinmoskala.arcseekbar.ArcSeekBar
+        android:id="@+id/seekBar"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:padding="40dp"
