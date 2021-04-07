@@ -52,7 +52,7 @@ public class TemperatureFragment extends Fragment {
             public void invoke(int i) {
                 i +=10;
                 temper = String.valueOf(i);
-                temperature.setText( temper+ " C°" );
+                temperature.setText( "Current " + temper+ " C°" );
             }
         });
     }
