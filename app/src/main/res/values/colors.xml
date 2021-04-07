@@ -14,6 +14,20 @@
     <color name="red">#FF4141</color>
     <color name="deepRed">#FF0000</color>
 
+    <color name="primaryColor">#5cc5e3</color>
+
+    <color name="primaryLightColor">#93f8ff</color>
+
+    <color name="primaryDarkColor">#1394b1</color>
+
+    <color name="secondaryColor">#d59d33</color>
+
+    <color name="secondaryLightColor">#ffce63</color>
+
+    <color name="secondaryDarkColor">#a06f00</color>
+
+    <color name="hemaColor">#da2d2a</color>
+
     <array name="gradient">
         <item>#00B0FF</item>
         <item>#82C7FD</item>
