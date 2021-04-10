@@ -48,16 +48,16 @@
 
     <Button
         android:id="@+id/btnSetTemp"
-        style="@style/defaultButton"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/send"
         android:text="@string/submit"
-        app:backgroundTint="@color/secondaryColor"
-        app:iconTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTemperature"
-        app:rippleColor="@color/secondaryLightColor" />
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
