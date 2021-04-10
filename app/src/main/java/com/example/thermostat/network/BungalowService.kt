@@ -11,6 +11,8 @@ interface BungalowService {
 
     @GET(Constants.idValue)
     suspend fun getSingleBungalow() : Response<Bungalow>
+
+    @GET()
     suspend fun getBungalows() : Response<List<Bungalow>>
 
 
