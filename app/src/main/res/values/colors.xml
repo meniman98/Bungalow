@@ -35,4 +35,9 @@
         <item>#FF0000</item>
     </array>
 
+    <array name="orangeGradient">
+        <item>#FBD797</item>
+        <item>#D18D09</item>
+    </array>
+
 </resources>
