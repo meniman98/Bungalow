@@ -43,7 +43,7 @@ public class TemperatureFragment extends Fragment {
         temperature = view.findViewById(R.id.tvTemperature);
 
 
-        int[] colourArray = getResources().getIntArray(R.array.orangeGradient);
+        int[] colourArray = getResources().getIntArray(R.array.gradient);
         seekBar.setProgressGradient(colourArray);
 
 
