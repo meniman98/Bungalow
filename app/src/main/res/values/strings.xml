@@ -6,7 +6,7 @@
     <string name="germany">Germany</string>
     <string name="theNetherlands">The Netherlands</string>
     <string name="searchHouse">Search for a house…</string>
-    <string name="startTemp">10 C°</string>
+    <string name="startTemp">10°</string>
     <string name="actual_temperature">Current Temperature: </string>
     <string name="submit">Submit</string>
 </resources>
