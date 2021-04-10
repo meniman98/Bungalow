@@ -12,22 +12,22 @@ class Bungalow {
 
     @SerializedName("id")
     @Expose
-    private val id: Int? = null
+    private var id: Int? = null
 
     @SerializedName("number")
     @Expose
-    private val number: Int? = null
+    private var number: Int? = null
 
     @SerializedName("temperature")
     @Expose
-    private val temperature: Double? = null
+    private var temperature: Double? = null
 
     @SerializedName("welcomeMessage")
     @Expose
-    private val welcomeMessage: String? = null
+    private var welcomeMessage: String? = null
 
     @SerializedName("cvIpAddress")
     @Expose
-    private val cvIpAddress: String? = null
+    private var cvIpAddress: String? = null
 
 }
