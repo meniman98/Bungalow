@@ -37,6 +37,10 @@ dependencies {
     // seekbar
     compile 'com.github.marcinmoskala:ArcSeekBar:0.31'
 
+    //Retrofit and GSON
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
