@@ -1,6 +1,6 @@
 package com.example.thermostat.network
 
-import com.example.thermostat.Bungalow
+import com.example.thermostat.model.Bungalow
 import retrofit2.Response
 
 class Repo(

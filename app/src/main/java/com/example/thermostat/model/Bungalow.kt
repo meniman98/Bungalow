@@ -1,4 +1,4 @@
-package com.example.thermostat
+package com.example.thermostat.model
 
 import com.google.gson.annotations.Expose
 

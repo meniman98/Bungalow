@@ -1,6 +1,6 @@
 package com.example.thermostat.contract;
 
-import com.example.thermostat.Bungalow;
+import com.example.thermostat.model.Bungalow;
 
 public class MainContract {
 

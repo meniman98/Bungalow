@@ -1,6 +1,6 @@
 package com.example.thermostat.network
 
-import com.example.thermostat.Bungalow
+import com.example.thermostat.model.Bungalow
 import com.example.thermostat.Constants
 import retrofit2.Response
 import retrofit2.Retrofit
