@@ -11,8 +11,9 @@ import com.marcinmoskala.arcseekbar.ProgressListener
 
 class TemperatureFragment : Fragment() {
     private lateinit var seekBar: ArcSeekBar
-    private lateinit var temperature: TextView
+    private lateinit var setTemperature: TextView
     var temper: String? = null
+    private lateinit var actualTemper: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,14 +31,15 @@ class TemperatureFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //main code here
         seekBar = view.findViewById(R.id.seekBar)
-        temperature = view.findViewById(R.id.tvTemperature)
+        setTemperature = view.findViewById(R.id.tvTemperature)
+        actualTemper = view.findViewById(R.id.tvActualTemp)
         val colourArray = resources.getIntArray(R.array.gradient)
         seekBar.setProgressGradient(*colourArray)
         seekBar.onProgressChangedListener = ProgressListener { i ->
             var i = i
             i += 10
             temper = i.toString()
-            temperature.setText("$temper°")
+            setTemperature.setText("$temper°")
         }
     }
 }
