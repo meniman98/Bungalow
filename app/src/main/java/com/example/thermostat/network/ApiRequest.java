@@ -1,23 +1,23 @@
 package com.example.thermostat.network
 
-import retrofit2.Response
-import java.io.IOException
+import com.example.thermostat.model.Bungalow;
+import com.example.thermostat.presenter.ApiListener;
 
-abstract class ApiRequest {
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
+
+public class ApiRequest {
 
 
-    suspend fun <T: Any> apiRequest(call: suspend () -> Response<T>) : T {
-        val response = call.invoke()
-        if (response.isSuccessful) {
-            return response.body()!!
-        }
-        else {
-            //handle the error
-            throw ApiException(response.code().toString())
+    private ApiListener apiListener;
+    private Call<List<Bungalow>> callList;
+    private Call<Bungalow> callBungalow;
 
-        }
+    public ApiRequest(ApiListener apiListener) {
+        this.apiListener = apiListener;
+        callList =
     }
-
 }
 
-class ApiException(message: String): IOException(message)
