@@ -12,15 +12,15 @@ class Bungalow {
 
     @SerializedName("id")
     @Expose
-    private var id: Int? = null
+     var id: Int? = null
 
     @SerializedName("number")
     @Expose
-    private var number: Int? = null
+     var number: Int? = null
 
     @SerializedName("temperature")
     @Expose
-    private var temperature: Double? = null
+     var temperature: Double? = null
 
     @SerializedName("welcomeMessage")
     @Expose

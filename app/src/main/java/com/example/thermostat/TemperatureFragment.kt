@@ -6,6 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.thermostat.dataSource.ApiRequest
+import com.example.thermostat.model.Bungalow
+import com.example.thermostat.network.BungalowService
+import com.example.thermostat.network.Repo
+import com.example.thermostat.presenter.ApiListener
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 import com.marcinmoskala.arcseekbar.ProgressListener
 
@@ -14,6 +19,7 @@ class TemperatureFragment : Fragment() {
     private lateinit var setTemperature: TextView
     var temper: String? = null
     private lateinit var actualTemper: TextView
+    private lateinit var apiRequest: ApiRequest
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +36,7 @@ class TemperatureFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         //main code here
+        actualTemper = view.findViewById(R.id.tvActualTemp)
         seekBar = view.findViewById(R.id.seekBar)
         setTemperature = view.findViewById(R.id.tvTemperature)
         actualTemper = view.findViewById(R.id.tvActualTemp)
@@ -41,5 +48,28 @@ class TemperatureFragment : Fragment() {
             temper = i.toString()
             setTemperature.setText("$temper°")
         }
+
+        // connection
+
+        //connection
+        var repo: Repo = BungalowService.getBungalow()
+        apiRequest = ApiRequest(object : ApiListener {
+            override fun onSuccess(bungalow: Bungalow?) {
+                actualTemper.setText(bungalow?.temperature.toString() ?: "Error")
+
+
+            }
+
+            override fun onSuccess(bungalows: MutableList<Bungalow>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onError(t: Throwable?) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
+
+
 }

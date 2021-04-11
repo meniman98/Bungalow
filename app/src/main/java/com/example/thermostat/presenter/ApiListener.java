@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ApiListener {
 
+
+
     void onSuccess(Bungalow bungalow);
 
     // cheeky overloaded method here
