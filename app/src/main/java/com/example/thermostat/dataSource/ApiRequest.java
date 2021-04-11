@@ -1,4 +1,4 @@
-package com.example.thermostat.network
+package com.example.thermostat.dataSource
 
 import com.example.thermostat.model.Bungalow;
 import com.example.thermostat.presenter.ApiListener;
