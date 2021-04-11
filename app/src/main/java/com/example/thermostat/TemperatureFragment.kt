@@ -52,7 +52,8 @@ class TemperatureFragment : Fragment() {
         // connection
 
         //connection
-        var repo: Repo = BungalowService.getBungalow()
+
+
         apiRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
                 actualTemper.setText(bungalow?.temperature.toString() ?: "Error")
@@ -69,6 +70,7 @@ class TemperatureFragment : Fragment() {
             }
 
         })
+        apiRequest.getSingleBungalow()
     }
 
 
