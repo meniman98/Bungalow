@@ -1,4 +1,4 @@
-package com.example.thermostat.dataSource
+package com.example.thermostat.dataSource;
 
 import com.example.thermostat.model.Bungalow;
 import com.example.thermostat.network.BungalowService;
