@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.PUT;
 
 public interface Repo {
@@ -25,7 +26,7 @@ public interface Repo {
     Call<List<Bungalow>> getAllBungalows();
 
     //put single
-    @PUT(Constants.idValue)
+    @PATCH(Constants.idValue)
     Call<Bungalow> putBungalow(double temp, @Body Bungalow bungalow);
 
 }
