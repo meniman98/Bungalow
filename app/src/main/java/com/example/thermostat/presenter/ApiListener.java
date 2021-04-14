@@ -14,5 +14,7 @@ public interface ApiListener {
     void onSuccess(List<Bungalow> bungalows);
 
 
+
+
     void onError(Throwable t);
 }

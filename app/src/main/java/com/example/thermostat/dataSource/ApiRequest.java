@@ -16,11 +16,18 @@ public class ApiRequest {
     private ApiListener apiListener;
     private Call<List<Bungalow>> callList;
     private Call<Bungalow> callBungalow;
+    private Call<Bungalow> putCallBungalow;
+
 
     public ApiRequest(ApiListener apiListener) {
         this.apiListener = apiListener;
         callList = BungalowService.getBungalow().getAllBungalows();
         callBungalow = BungalowService.getBungalow().getSingleBungalow();
+    }
+
+    public ApiRequest(ApiListener apiListener, double temp, Bungalow bungalow) {
+        this.apiListener = apiListener;
+        putCallBungalow = BungalowService.getBungalow().putBungalow(temp, bungalow);
     }
 
     public void getSingleBungalow() {
@@ -53,6 +60,22 @@ public class ApiRequest {
             @Override
             public void onFailure(Call<List<Bungalow>> call, Throwable t) {
                 apiListener.onError(t);
+            }
+        });
+    }
+
+    public void putBungalow() {
+        putCallBungalow.enqueue(new Callback<Bungalow>() {
+            @Override
+            public void onResponse(Call<Bungalow> call, Response<Bungalow> response) {
+               Bungalow bungalow = response.body();
+
+               apiListener.onSuccess(bungalow);
+            }
+
+            @Override
+            public void onFailure(Call<Bungalow> call, Throwable t) {
+            apiListener.onError(t);
             }
         });
     }

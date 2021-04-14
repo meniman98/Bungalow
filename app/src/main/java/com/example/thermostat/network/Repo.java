@@ -26,6 +26,6 @@ public interface Repo {
 
     //put single
     @PUT(Constants.idValue)
-    Call<Bungalow> putBungallow(double temp, @Body Bungalow bungalow);
+    Call<Bungalow> putBungalow(double temp, @Body Bungalow bungalow);
 
 }
