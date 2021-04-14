@@ -7,6 +7,7 @@ import com.example.thermostat.model.Bungalow;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.PUT;
@@ -25,6 +26,6 @@ public interface Repo {
 
     //put single
     @PUT(Constants.idValue)
-    Call<Bungalow> putBungallow(@Pa)
+    Call<Bungalow> putBungallow(double temp, @Body Bungalow bungalow);
 
 }
