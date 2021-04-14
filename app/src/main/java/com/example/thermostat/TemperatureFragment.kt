@@ -43,17 +43,15 @@ class TemperatureFragment : Fragment() {
         val colourArray = resources.getIntArray(R.array.gradient)
         seekBar.setProgressGradient(*colourArray)
         seekBar.onProgressChangedListener = ProgressListener { i ->
-            var i = i
-            i += 10
+            var i = i.toDouble();
+
+            i += 10.0
             temper = i.toString()
             setTemperature.setText("$temper°")
         }
 
         // connection
-
-        //connection
-
-
+        // get request
         apiRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
                 actualTemper.setText(bungalow?.temperature.toString() ?: "Error")
@@ -66,7 +64,7 @@ class TemperatureFragment : Fragment() {
             }
 
             override fun onError(t: Throwable?) {
-                TODO("Not yet implemented")
+
             }
 
         })
