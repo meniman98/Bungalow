@@ -64,7 +64,9 @@ class TemperatureFragment : Fragment() {
 
         patchRequest = ApiRequest(object: ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
-                bungalow?.temperature = 20.0
+                var content: String = ""
+                content += "temperature:" + 20
+
 
             }
 
