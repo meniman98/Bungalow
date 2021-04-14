@@ -1,10 +1,12 @@
 package com.example.thermostat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.thermostat.dataSource.ApiRequest
 import com.example.thermostat.model.Bungalow
@@ -20,6 +22,8 @@ class TemperatureFragment : Fragment() {
     var temper: String? = null
     private lateinit var actualTemper: TextView
     private lateinit var apiRequest: ApiRequest
+    private lateinit var patchRequest: ApiRequest
+    private var bungalow = Bungalow()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,14 +47,36 @@ class TemperatureFragment : Fragment() {
         val colourArray = resources.getIntArray(R.array.gradient)
         seekBar.setProgressGradient(*colourArray)
         seekBar.onProgressChangedListener = ProgressListener { i ->
-            var i = i.toDouble();
+            var i = i;
 
-            i += 10.0
+            i += 10
             temper = i.toString()
             setTemperature.setText("$temper°")
         }
 
         // connection
+        //patch request
+        //1 onclick listener
+        // 2 async task and pass callback
+        // 3 patch request within async task
+        // 4 in onsuccess execute callback so the ui thead will be active
+        //5 within callback (ui thread) pass value
+
+        patchRequest = ApiRequest(object: ApiListener {
+            override fun onSuccess(bungalow: Bungalow?) {
+                bungalow?.temperature = 20.0
+
+            }
+
+            override fun onSuccess(bungalows: MutableList<Bungalow>?) {
+
+            }
+
+            override fun onError(t: Throwable?) {
+
+            }
+        }, bungalow)
+
         // get request
         apiRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
@@ -68,7 +94,12 @@ class TemperatureFragment : Fragment() {
             }
 
         })
+
         apiRequest.getSingleBungalow()
+        patchRequest.patchBungalow()
+
+
+
     }
 
 

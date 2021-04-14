@@ -15,6 +15,5 @@ public interface ApiListener {
 
 
 
-
     void onError(Throwable t);
 }

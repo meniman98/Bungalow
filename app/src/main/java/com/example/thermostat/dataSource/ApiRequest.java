@@ -25,9 +25,9 @@ public class ApiRequest {
         callBungalow = BungalowService.getBungalow().getSingleBungalow();
     }
 
-    public ApiRequest(ApiListener apiListener, double temp, Bungalow bungalow) {
+    public ApiRequest(ApiListener apiListener, Bungalow bungalow) {
         this.apiListener = apiListener;
-        putCallBungalow = BungalowService.getBungalow().putBungalow(temp, bungalow);
+        putCallBungalow = BungalowService.getBungalow().patchBungalow(bungalow);
     }
 
     public void getSingleBungalow() {
@@ -64,7 +64,7 @@ public class ApiRequest {
         });
     }
 
-    public void putBungalow() {
+    public void patchBungalow() {
         putCallBungalow.enqueue(new Callback<Bungalow>() {
             @Override
             public void onResponse(Call<Bungalow> call, Response<Bungalow> response) {
