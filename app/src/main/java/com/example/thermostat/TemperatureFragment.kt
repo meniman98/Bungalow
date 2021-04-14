@@ -80,7 +80,8 @@ class TemperatureFragment : Fragment() {
         // get request
         apiRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
-                actualTemper.setText(bungalow?.temperature.toString() ?: "Error")
+                actualTemper.append(bungalow?.temperature.toString() ?: "Error")
+
 
 
             }
