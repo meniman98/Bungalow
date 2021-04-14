@@ -9,4 +9,5 @@
     <string name="startTemp">10°</string>
     <string name="actual_temperature">Current Temperature: </string>
     <string name="submit">Submit</string>
+    <string name="logo">SBP</string>
 </resources>
