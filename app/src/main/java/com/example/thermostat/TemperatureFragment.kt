@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -15,10 +16,8 @@ import com.example.thermostat.network.Repo
 import com.example.thermostat.presenter.ApiListener
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 import com.marcinmoskala.arcseekbar.ProgressListener
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 class TemperatureFragment : Fragment() {
     private lateinit var seekBar: ArcSeekBar
@@ -29,6 +28,7 @@ class TemperatureFragment : Fragment() {
     private lateinit var patchRequest: ApiRequest
     private var bungalow = Bungalow()
     private lateinit var job: Job
+    private lateinit var submitButton: Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +39,7 @@ class TemperatureFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_temperature, container, false)
     }
 
+    @InternalCoroutinesApi
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -48,7 +49,7 @@ class TemperatureFragment : Fragment() {
         actualTemper = view.findViewById(R.id.tvActualTemp)
         seekBar = view.findViewById(R.id.seekBar)
         setTemperature = view.findViewById(R.id.tvTemperature)
-        actualTemper = view.findViewById(R.id.tvActualTemp)
+        submitButton = view.findViewById(R.id.btnSetTemp)
         val colourArray = resources.getIntArray(R.array.gradient)
         seekBar.setProgressGradient(*colourArray)
         seekBar.onProgressChangedListener = ProgressListener { i ->
@@ -67,11 +68,19 @@ class TemperatureFragment : Fragment() {
         // 4 in onsuccess execute callback so the ui thead will be active
         //5 within callback (ui thread) pass value
 
-        CoroutineScope(IO).launch {
-            getRequest()
+        submitButton.setOnClickListener {
+
+            CoroutineScope(IO).launch {
+                while (NonCancellable.isActive)
+                getRequest()
+                delay(1000L)
+                apiRequest.getSingleBungalow()
+                delay(1000L)
+            }
         }
-        apiRequest.getSingleBungalow()
-        patchRequest.patchBungalow()
+
+        //apiRequest.getSingleBungalow()
+        //patchRequest.patchBungalow()
 
 
     }
@@ -97,12 +106,14 @@ class TemperatureFragment : Fragment() {
 
     }
 
-    private fun getRequest() {
+    private fun repeatingJob(time: Long)
+
+    private suspend fun getRequest() {
         // get request
         apiRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
                // actualTemper.append(bungalow?.temperature.toString() ?: "Error")
-                updateTextview(bungalow?.temperature.toString())
+                 updateTextview(bungalow?.temperature.toString())
 
             }
 
