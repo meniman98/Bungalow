@@ -1,5 +1,8 @@
 package com.example.thermostat.network;
 import com.example.thermostat.Constants;
+
+import org.jetbrains.annotations.NotNull;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,6 +20,7 @@ public class BungalowService {
         }
         return retrofit;
     }
+
 
     public static Repo getBungalow() {
         return getRetrofit().create(Repo.class);

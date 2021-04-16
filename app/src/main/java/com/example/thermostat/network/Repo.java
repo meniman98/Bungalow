@@ -17,17 +17,15 @@ import retrofit2.http.Path;
 public interface Repo {
 
     // get single
-    @Headers("Content-Type:application/json; charset=UTF-8")
     @GET(Constants.idValue)
     Call<Bungalow> getSingleBungalow();
 
     // get all
-    @Headers("Content-Type:application/json; charset=UTF-8")
     @GET(Constants.baseUrl)
     Call<List<Bungalow>> getAllBungalows();
 
     //put single
-    @PATCH(Constants.idValue)
-    Call<Bungalow> patchBungalow(@Body Bungalow bungalow);
+    @PUT(Constants.tempUrl)
+    Call<Bungalow> putBungalow(@Body Bungalow bungalow);
 
 }

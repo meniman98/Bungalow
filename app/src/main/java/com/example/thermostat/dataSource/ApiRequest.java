@@ -27,7 +27,7 @@ public class ApiRequest {
 
     public ApiRequest(ApiListener apiListener, Bungalow bungalow) {
         this.apiListener = apiListener;
-        putCallBungalow = BungalowService.getBungalow().patchBungalow(bungalow);
+        putCallBungalow = BungalowService.getBungalow().putBungalow(bungalow);
     }
 
     public void getSingleBungalow() {
