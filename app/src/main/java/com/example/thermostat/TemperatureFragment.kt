@@ -68,16 +68,17 @@ class TemperatureFragment : Fragment() {
         // 4 in onsuccess execute callback so the ui thead will be active
         //5 within callback (ui thread) pass value
 
-        submitButton.setOnClickListener {
+
 
             CoroutineScope(IO).launch {
-                while (NonCancellable.isActive)
-                getRequest()
-                delay(1000L)
-                apiRequest.getSingleBungalow()
-                delay(1000L)
+                while (NonCancellable.isActive) {
+                    getRequest()
+                    apiRequest.getSingleBungalow()
+                    delay(2000L)
+                }
+
             }
-        }
+
 
         //apiRequest.getSingleBungalow()
         //patchRequest.patchBungalow()
@@ -106,14 +107,13 @@ class TemperatureFragment : Fragment() {
 
     }
 
-    private fun repeatingJob(time: Long)
 
     private suspend fun getRequest() {
         // get request
         apiRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
-               // actualTemper.append(bungalow?.temperature.toString() ?: "Error")
-                 updateTextview(bungalow?.temperature.toString())
+                // actualTemper.append(bungalow?.temperature.toString() ?: "Error")
+                updateTextview(bungalow?.temperature.toString())
 
             }
 
