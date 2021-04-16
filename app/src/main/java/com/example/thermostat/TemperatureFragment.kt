@@ -15,6 +15,10 @@ import com.example.thermostat.network.Repo
 import com.example.thermostat.presenter.ApiListener
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 import com.marcinmoskala.arcseekbar.ProgressListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class TemperatureFragment : Fragment() {
     private lateinit var seekBar: ArcSeekBar
@@ -24,6 +28,7 @@ class TemperatureFragment : Fragment() {
     private lateinit var apiRequest: ApiRequest
     private lateinit var patchRequest: ApiRequest
     private var bungalow = Bungalow()
+    private lateinit var job: Job
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,7 +67,18 @@ class TemperatureFragment : Fragment() {
         // 4 in onsuccess execute callback so the ui thead will be active
         //5 within callback (ui thread) pass value
 
-        patchRequest = ApiRequest(object: ApiListener {
+        CoroutineScope(IO).launch {
+            getRequest()
+        }
+        apiRequest.getSingleBungalow()
+        patchRequest.patchBungalow()
+
+
+    }
+
+
+    private fun patchRequest() {
+        patchRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
                 var content: String = ""
                 content += "temperature:" + 20
@@ -79,17 +95,19 @@ class TemperatureFragment : Fragment() {
             }
         }, bungalow)
 
+    }
+
+    private fun getRequest() {
         // get request
         apiRequest = ApiRequest(object : ApiListener {
             override fun onSuccess(bungalow: Bungalow?) {
-                actualTemper.append(bungalow?.temperature.toString() ?: "Error")
-
-
+               // actualTemper.append(bungalow?.temperature.toString() ?: "Error")
+                updateTextview(bungalow?.temperature.toString())
 
             }
 
             override fun onSuccess(bungalows: MutableList<Bungalow>?) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onError(t: Throwable?) {
@@ -98,11 +116,11 @@ class TemperatureFragment : Fragment() {
 
         })
 
-        apiRequest.getSingleBungalow()
-        patchRequest.patchBungalow()
+    }
 
-
-
+    private fun updateTextview(temp: String) {
+        //actualTemper.append(bungalow?.temperature.toString() ?: "Error")
+        actualTemper.append(temp)
     }
 
 
