@@ -1,4 +1,4 @@
-// ello
+// it works
 package com.example.thermostat
 
 import android.os.Bundle
