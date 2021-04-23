@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Welcome Mr Schouten"
+        android:text="@string/welcome"
         android:textColor="@color/white"
         android:fontFamily="@font/arial"
         android:textSize="@dimen/bigText"

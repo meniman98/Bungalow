@@ -28,7 +28,6 @@ class TemperatureFragment : Fragment() {
     private lateinit var apiRequest: ApiRequest
     private lateinit var patchRequest: ApiRequest
     private var bungalow = Bungalow()
-    private lateinit var job: Job
     private lateinit var submitButton: Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,12 +61,6 @@ class TemperatureFragment : Fragment() {
         }
 
         // connection
-        //patch request
-        //1 onclick listener
-        // 2 async task and pass callback
-        // 3 patch request within async task
-        // 4 in onsuccess execute callback so the ui thead will be active
-        //5 within callback (ui thread) pass value
 
 
 
