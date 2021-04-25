@@ -14,6 +14,7 @@ import com.example.thermostat.presenter.ApiListener
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 import com.marcinmoskala.arcseekbar.ProgressListener
 import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
 
 class TemperatureFragment : Fragment() {
 
@@ -30,6 +31,7 @@ class TemperatureFragment : Fragment() {
     private lateinit var apiRequest: ApiRequest
     private lateinit var patchRequest: ApiRequest
     private var seekbarValue: Int = 0
+    private var actualTemperValue = 14
 
     private lateinit var temper: String
     private var bungalow = Bungalow()
@@ -85,7 +87,19 @@ class TemperatureFragment : Fragment() {
     }
 
     private fun simulateTempAdjustment() {
+        while (actualTemperValue < seekbarValue) {
+            gradualIncrease()
+            val temper = "$actualTemperValue °"
+            actualTemper.text = temper
+        }
 
+
+    }
+    private fun gradualIncrease() {
+        CoroutineScope(IO).launch {
+            actualTemperValue++
+            delay(1000L)
+        }
     }
 
 

@@ -13,5 +13,5 @@
     <string name="welcome">Hello and welcome</string>
     <string name="desired">Desired Temp:</string>
     <string name="desiredTemp">15 °C</string>
-    <string name="actualTemp">6 °C</string>
+    <string name="actualTemp">14 °C</string>
 </resources>
