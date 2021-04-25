@@ -1,40 +1,44 @@
-// it works
 package com.example.thermostat
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.thermostat.dataSource.ApiRequest
 import com.example.thermostat.model.Bungalow
-import com.example.thermostat.network.BungalowService
-import com.example.thermostat.network.Repo
 import com.example.thermostat.presenter.ApiListener
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 import com.marcinmoskala.arcseekbar.ProgressListener
 import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.IO
 
 class TemperatureFragment : Fragment() {
+
+    // seekbar and button
     private lateinit var seekBar: ArcSeekBar
+    private lateinit var submitButton: Button
+
+    // temperatures
     private lateinit var setTemperature: TextView
-    var temper: String? = null
     private lateinit var actualTemper: TextView
+    private lateinit var desiredTemper: TextView
+
+    // logic
     private lateinit var apiRequest: ApiRequest
     private lateinit var patchRequest: ApiRequest
+
+    // colour gradient
+    private val colourArray = resources.getIntArray(R.array.gradient)
+
+    var temper: String? = null
     private var bungalow = Bungalow()
-    private lateinit var submitButton: Button
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_temperature, container, false)
     }
@@ -46,11 +50,17 @@ class TemperatureFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         //main code here
-        actualTemper = view.findViewById(R.id.tvActualTemp)
+
+        // temperatures
+        actualTemper = view.findViewById(R.id.numActualTemp)
+        setTemperature = view.findViewById(R.id.tvSetTemp)
+        desiredTemper = view.findViewById(R.id.numDesiredTemp)
+
+        // seekbar and button
         seekBar = view.findViewById(R.id.seekBar)
-        setTemperature = view.findViewById(R.id.tvTemperature)
         submitButton = view.findViewById(R.id.btnSetTemp)
-        val colourArray = resources.getIntArray(R.array.gradient)
+
+        // set colour gradient
         seekBar.setProgressGradient(*colourArray)
         seekBar.onProgressChangedListener = ProgressListener { i ->
             var i = i;
@@ -59,23 +69,6 @@ class TemperatureFragment : Fragment() {
             temper = i.toString()
             setTemperature.setText("$temper°")
         }
-
-        // connection
-
-
-
-            CoroutineScope(IO).launch {
-                while (NonCancellable.isActive) {
-                    getRequest()
-                    apiRequest.getSingleBungalow()
-                    delay(2000L)
-                }
-
-            }
-
-
-        //apiRequest.getSingleBungalow()
-        //patchRequest.patchBungalow()
 
 
     }

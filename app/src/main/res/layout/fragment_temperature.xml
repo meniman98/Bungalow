@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -26,7 +25,7 @@
         app:thumb="@drawable/white_thumb" />
 
     <TextView
-        android:id="@+id/tvTemperature"
+        android:id="@+id/tvSetTemp"
         style="@style/defaultText"
         android:text="@string/startTemp"
         android:textSize="42sp"
@@ -58,7 +57,7 @@
         android:text="@string/submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTemperature" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSetTemp" />
 
     <ImageView
         android:id="@+id/logo"
@@ -87,13 +86,13 @@
         android:layout_width="3dp"
         android:layout_height="0dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="@+id/noActualTemp"
+        app:layout_constraintBottom_toBottomOf="@+id/numActualTemp"
         app:layout_constraintEnd_toStartOf="@+id/tvDesiredTemp"
         app:layout_constraintStart_toEndOf="@+id/tvActualTemp"
         app:layout_constraintTop_toTopOf="@+id/tvActualTemp" />
 
     <TextView
-        android:id="@+id/noActualTemp"
+        android:id="@+id/numActualTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -105,7 +104,7 @@
          />
 
     <TextView
-        android:id="@+id/noDesiredTemp"
+        android:id="@+id/numDesiredTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
