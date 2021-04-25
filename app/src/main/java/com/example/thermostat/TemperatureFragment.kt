@@ -1,6 +1,7 @@
 package com.example.thermostat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class TemperatureFragment : Fragment() {
     // logic
     private lateinit var apiRequest: ApiRequest
     private lateinit var patchRequest: ApiRequest
+    private var seekbarValue: Int = 0
 
     private lateinit var temper: String
     private var bungalow = Bungalow()
@@ -46,8 +48,6 @@ class TemperatureFragment : Fragment() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        //main code here
-
         // temperatures
         actualTemper = view.findViewById(R.id.numActualTemp)
         setTemperature = view.findViewById(R.id.tvSetTemp)
@@ -63,12 +63,29 @@ class TemperatureFragment : Fragment() {
 
         // seekbar onChange
         seekBar.onProgressChangedListener = ProgressListener { i ->
-            var seekbarValue = i;
+            seekbarValue = i;
 
             seekbarValue += 10
             temper = "$seekbarValue °"
             setTemperature.text = temper
         }
+
+        // button onClick
+        submitButton.setOnClickListener { v: View? ->
+            Log.i("TemperFrag", "clicked!")
+            setTemp()
+            simulateTempAdjustment()
+        }
+    }
+
+    // set temperature for desired temperature
+    private fun setTemp() {
+        val temper = "$seekbarValue °"
+        desiredTemper.text = temper
+    }
+
+    private fun simulateTempAdjustment() {
+
     }
 
 
