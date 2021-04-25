@@ -87,30 +87,34 @@
         android:layout_width="3dp"
         android:layout_height="0dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDesiredTemp"
+        app:layout_constraintBottom_toBottomOf="@+id/noActualTemp"
         app:layout_constraintEnd_toStartOf="@+id/tvDesiredTemp"
         app:layout_constraintStart_toEndOf="@+id/tvActualTemp"
-        app:layout_constraintTop_toTopOf="@+id/tvDesiredTemp" />
+        app:layout_constraintTop_toTopOf="@+id/tvActualTemp" />
 
     <TextView
         android:id="@+id/noActualTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/actualTemp"
+        android:textSize="@dimen/mediumText"
         app:layout_constraintEnd_toEndOf="@+id/tvActualTemp"
         app:layout_constraintStart_toStartOf="@+id/tvActualTemp"
-        app:layout_constraintTop_toBottomOf="@+id/tvActualTemp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvActualTemp"
+         />
 
     <TextView
         android:id="@+id/noDesiredTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/desiredTemp"
+        android:textSize="@dimen/mediumText"
         app:layout_constraintEnd_toEndOf="@+id/tvDesiredTemp"
         app:layout_constraintStart_toStartOf="@+id/tvDesiredTemp"
-        app:layout_constraintTop_toBottomOf="@+id/tvDesiredTemp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDesiredTemp"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
