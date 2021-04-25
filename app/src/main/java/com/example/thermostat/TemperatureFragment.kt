@@ -29,10 +29,7 @@ class TemperatureFragment : Fragment() {
     private lateinit var apiRequest: ApiRequest
     private lateinit var patchRequest: ApiRequest
 
-    // colour gradient
-    private val colourArray = resources.getIntArray(R.array.gradient)
-
-    var temper: String? = null
+    private lateinit var temper: String
     private var bungalow = Bungalow()
 
     override fun onCreateView(
@@ -61,64 +58,17 @@ class TemperatureFragment : Fragment() {
         submitButton = view.findViewById(R.id.btnSetTemp)
 
         // set colour gradient
+        val colourArray = resources.getIntArray(R.array.gradient)
         seekBar.setProgressGradient(*colourArray)
+
+        // seekbar onChange
         seekBar.onProgressChangedListener = ProgressListener { i ->
-            var i = i;
+            var seekbarValue = i;
 
-            i += 10
-            temper = i.toString()
-            setTemperature.setText("$temper°")
+            seekbarValue += 10
+            temper = "$seekbarValue °"
+            setTemperature.text = temper
         }
-
-
-    }
-
-
-    private fun patchRequest() {
-        patchRequest = ApiRequest(object : ApiListener {
-            override fun onSuccess(bungalow: Bungalow?) {
-                var content: String = ""
-                content += "temperature:" + 20
-
-
-            }
-
-            override fun onSuccess(bungalows: MutableList<Bungalow>?) {
-
-            }
-
-            override fun onError(t: Throwable?) {
-
-            }
-        }, bungalow)
-
-    }
-
-
-    private suspend fun getRequest() {
-        // get request
-        apiRequest = ApiRequest(object : ApiListener {
-            override fun onSuccess(bungalow: Bungalow?) {
-                // actualTemper.append(bungalow?.temperature.toString() ?: "Error")
-                updateTextview(bungalow?.temperature.toString())
-
-            }
-
-            override fun onSuccess(bungalows: MutableList<Bungalow>?) {
-
-            }
-
-            override fun onError(t: Throwable?) {
-
-            }
-
-        })
-
-    }
-
-    private fun updateTextview(temp: String) {
-        //actualTemper.append(bungalow?.temperature.toString() ?: "Error")
-        actualTemper.append(temp)
     }
 
 
