@@ -15,9 +15,10 @@
         android:padding="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52"
+        app:layout_constraintVertical_bias="0.707"
         app:maxProgress="14"
         app:progressBackgroundColor="@color/grey"
         app:progressBackgroundWidth="20dp"
@@ -39,12 +40,13 @@
         android:id="@+id/tvActualTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/actual_temperature"
         android:textSize="@dimen/mediumText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvDesiredTemp"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <Button
         android:id="@+id/btnSetTemp"
@@ -59,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTemperature" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
@@ -67,6 +69,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/tvDesiredTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/desired"
+        android:textSize="@dimen/mediumText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvActualTemp"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDesiredTemp"
+        app:layout_constraintEnd_toStartOf="@+id/tvDesiredTemp"
+        app:layout_constraintStart_toEndOf="@+id/tvActualTemp"
+        app:layout_constraintTop_toTopOf="@+id/tvDesiredTemp" />
+
+    <TextView
+        android:id="@+id/noActualTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/tvActualTemp"
+        app:layout_constraintStart_toStartOf="@+id/tvActualTemp"
+        app:layout_constraintTop_toBottomOf="@+id/tvActualTemp" />
+
+    <TextView
+        android:id="@+id/noDesiredTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/tvDesiredTemp"
+        app:layout_constraintStart_toStartOf="@+id/tvDesiredTemp"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesiredTemp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

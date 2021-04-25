@@ -7,8 +7,9 @@
     <string name="theNetherlands">The Netherlands</string>
     <string name="searchHouse">Search for a house…</string>
     <string name="startTemp">10°</string>
-    <string name="actual_temperature">Current Temperature: </string>
+    <string name="actual_temperature">Actual Temp: </string>
     <string name="submit">Submit</string>
     <string name="logo">SBP</string>
     <string name="welcome">Hello and welcome</string>
+    <string name="desired">Desired Temp:</string>
 </resources>
