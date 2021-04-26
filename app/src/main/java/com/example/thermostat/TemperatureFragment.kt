@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.thermostat.dataSource.ApiRequest
 import com.example.thermostat.model.Bungalow
-import com.example.thermostat.presenter.ApiListener
 import com.marcinmoskala.arcseekbar.ArcSeekBar
 import com.marcinmoskala.arcseekbar.ProgressListener
 import kotlinx.coroutines.*
@@ -75,31 +74,44 @@ class TemperatureFragment : Fragment() {
         // button onClick
         submitButton.setOnClickListener { v: View? ->
             Log.i("TemperFrag", "clicked!")
-            setTemp()
-            simulateTempAdjustment()
+            setDesiredTemp()
+            if (actualTemperValue < seekbarValue) {
+                CoroutineScope(IO).launch {
+                    gradualIncrease()
+                }
+            } else {
+                CoroutineScope(IO).launch {
+                    gradualDecrease()
+                }
+            }
+
         }
+    }
+
+    private suspend fun gradualDecrease() {
+        while (actualTemperValue != seekbarValue) {
+            actualTemperValue--
+            delay(1000L)
+        }
+
     }
 
     // set temperature for desired temperature
-    private fun setTemp() {
+    private fun setDesiredTemp() {
         val temper = "$seekbarValue °"
         desiredTemper.text = temper
     }
-
-    private fun simulateTempAdjustment() {
-        while (actualTemperValue < seekbarValue) {
-            gradualIncrease()
-            val temper = "$actualTemperValue °"
-            actualTemper.text = temper
-        }
-
-
+    private fun setActualTemp() {
+        val temper = "$actualTemperValue °"
+        actualTemper.text = temper
     }
-    private fun gradualIncrease() {
-        CoroutineScope(IO).launch {
+
+    private suspend fun gradualIncrease() {
+        while (actualTemperValue != seekbarValue) {
             actualTemperValue++
             delay(1000L)
         }
+
     }
 
 
