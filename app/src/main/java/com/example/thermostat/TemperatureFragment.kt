@@ -14,6 +14,7 @@ import com.marcinmoskala.arcseekbar.ArcSeekBar
 import com.marcinmoskala.arcseekbar.ProgressListener
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 
 class TemperatureFragment : Fragment() {
 
@@ -91,6 +92,16 @@ class TemperatureFragment : Fragment() {
     private suspend fun gradualDecrease() {
         while (actualTemperValue != seekbarValue) {
             actualTemperValue--
+            setActualTemp()
+            delay(1000L)
+        }
+
+    }
+
+    private suspend fun gradualIncrease() {
+        while (actualTemperValue != seekbarValue) {
+            actualTemperValue++
+            setActualTemp()
             delay(1000L)
         }
 
@@ -101,17 +112,12 @@ class TemperatureFragment : Fragment() {
         val temper = "$seekbarValue °"
         desiredTemper.text = temper
     }
-    private fun setActualTemp() {
-        val temper = "$actualTemperValue °"
-        actualTemper.text = temper
-    }
 
-    private suspend fun gradualIncrease() {
-        while (actualTemperValue != seekbarValue) {
-            actualTemperValue++
-            delay(1000L)
+    private suspend fun setActualTemp() {
+        withContext(Main) {
+            val temper = "$actualTemperValue °"
+            actualTemper.text = temper
         }
-
     }
 
 
